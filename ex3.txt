@@ -1,0 +1,14 @@
+- User Interface Node: This node interacts with the user, receiving commands and providing feedback. It subscribes to the `Object Position Topic` to know the position of the object and publishes to the `User Command Topic` to send commands to the `Manipulator Control Node`.
+
+- Simulation Environment Node: This node simulates the environment, including the manipulator and the object. It subscribes to the `Robot Motion Topic` to receive commands from the `Manipulator Control Node` and publishes to the `Object Position Topic` and `Tactile Feedback Topic` to provide feedback about the object's position and the manipulator's tactile feedback.
+
+- Camera Node: This node simulates the camera, detecting the object's position and publishing it to the `Object Position Topic`.
+
+- Manipulator Control Node`: This node controls the manipulator, receiving commands from the `User Interface Node` and feedback from the `Simulation Environment Node` and `Tactile Sensor Node`. It subscribes to the `User Command Topic` and `Object Position Topic` and publishes to the `Robot Motion Topic`.
+
+- Tactile Sensor Node: This node simulates the tactile sensors, detecting contact with the object and publishing this information to the `Tactile Feedback Topic`. It also subscribes to this topic to receive feedback from the `Simulation Environment Node`.
+
+Services could be used for actions that require a response, such as the user requesting the manipulator to grab the object. In this case, a `Grab Object Service` could be implemented in the `Manipulator Control Node` and called by the `User Interface Node`.
+
+
+
